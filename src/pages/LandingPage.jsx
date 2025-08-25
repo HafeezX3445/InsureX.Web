@@ -14,7 +14,7 @@ const LandingPage = () => {
   const [daughterAge, setDaughterAge] = useState("");
   const [fatherAge, setFatherAge] = useState("");
   const [motherAge, setMotherAge] = useState("");
-  const [fatherInLawAge, setFatherInLawAge] = useState("");
+  const [fatherInLawAge, setFatherInLawAge] = useState(""); 
   const [motherInLawAge, setMotherInLawAge] = useState("");
   const [showMore, setShowMore] = useState(false);
 
@@ -577,7 +577,7 @@ const LandingPage = () => {
         </div>
         {/* This is for the table */}
         <div className="container">
-          <h2>Why Choose Care Supreme Health Plan</h2>
+          <h2>Why Choose InsureX Health Plan</h2>
           <div className="table-wrapper">
             <table>
               <thead>
