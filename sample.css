@@ -1,0 +1,975 @@
+
+form,ul,li,ol {
+    padding: 0;
+    margin: 0;
+    list-style-type: none
+}
+
+.container {
+    width: 1140px;
+    margin: 0 auto
+}
+
+.d-flex {
+    display: flex
+}
+
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+}
+
+small {
+    color: red;
+    display: none
+}
+
+input[type=checkbox] {
+    accent-color: #295d9e
+}
+
+span.material-icons.success_icon_span {
+    font-family: Material Symbols Outlined;
+    font-size: 1.25rem;
+    color: #136da3;
+    font-weight: 600
+}
+
+.chil_landing {
+    margin-bottom: 65px
+}
+
+.chil_landing header {
+    background: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 0 1rem #0000000f;
+    margin-bottom: 1.5rem
+}
+
+.chil_landing header .inner_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.chil_landing header .inner_header .number {
+    display: block
+}
+
+.chil_landing header .inner_header .number .call_btn {
+    background: #ecf5ff;
+    border: 1px solid hsla(202.5,79.12%,35.69%,.18);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 20px;
+    color: #1a1a1a;
+    font-weight: 400;
+    text-decoration: none;
+    padding: .5rem
+}
+
+.chil_landing header .inner_header .number .call_btn svg {
+    background: #136da3;
+    padding: .2rem;
+    color: #fff;
+    border-radius: 100%
+}
+
+.chil_landing header .inner_header .number .call_btn span {
+    color: #136da3
+}
+
+.chil_landing header .inner_header .number .call_btn span.colon {
+    color: #1a1a1a
+}
+
+.chil_landing .chil_landing_body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: 30px;
+    width: 55%
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_discount {
+    position: relative;
+    display: flex;
+    width: 409px;
+    background: #ecf5ff;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    justify-content: end
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_discount:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 13px solid #fff;
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 0
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_discount:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-right: 13px solid #fff;
+    position: absolute;
+    right: 0;
+    top: 20%;
+    bottom: 0
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_discount img {
+    position: absolute;
+    left: -66px;
+    top: -50px;
+    width: 161px
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_discount .chil_discount_text {
+    width: 294px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px 0
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_discount .chil_discount_text .text1,.chil_landing .chil_landing_body .chil_quotes_left .chil_discount .chil_discount_text .text3 {
+    font-size: 1rem;
+    color: #000;
+    display: block
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_discount .chil_discount_text .text2 {
+    color: #295d9e;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 45px
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_heading {
+    text-align: center;
+    line-height: 1.3
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_heading h1 {
+    font-size: 2rem;
+    color: #231f20;
+    margin: 0;
+    font-weight: 500
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_heading p {
+    font-size: 1.5rem;
+    color: #231f20;
+    margin: 0
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_facts ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_facts ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 100%
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_facts ul li img {
+    margin-bottom: 15px
+}
+
+.chil_landing .chil_landing_body .chil_quotes_left .chil_facts ul li p {
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+    color: #231f20;
+    width: 79%
+}
+
+.chil_landing .chil_landing_body #care-quote-box {
+    width: 45%
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body {
+    background: #f8f7fc 0 0 no-repeat padding-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 15px 22px
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body h3 {
+    margin-top: 0;
+    color: #000;
+    font-size: 1rem;
+    padding-bottom: 7px
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input {
+    margin-bottom: 20px;
+    width: 48%
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    height: 46px;
+    box-sizing: border-box;
+    padding: 4px;
+    justify-content: space-between;
+    position: relative
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .memer_rel {
+    width: 114px;
+    background: #eee;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: .8rem
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .nice-select {
+    -webkit-tap-highlight-color: transparent;
+    flex-grow: 1;
+    font-size: .8rem;
+    padding-left: 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 42px;
+    line-height: 40px;
+    outline: 0;
+    transition: all .2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .nice-select .list {
+    overflow-x: hidden;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #4444441c;
+    box-sizing: border-box;
+    margin-top: 4px;
+    opacity: 0;
+    overflow-y: auto;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform: scale(.75) translateY(-21px);
+    transform: scale(.75) translateY(-21px);
+    transition: all .2s cubic-bezier(.5,0,0,1.25),opacity .15s ease-out;
+    z-index: 99;
+    height: 177px
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .nice-select .list .option {
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 35px;
+    list-style: none;
+    min-height: 35px;
+    outline: 0;
+    padding-left: 18px;
+    padding-right: 29px;
+    text-align: left;
+    transition: all .2s;
+    border-bottom: 1px solid #ebe7e6;
+    font-size: 14px
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .nice-select .list .option.selected {
+    font-weight: 500
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .nice-select:after {
+    border-bottom: 2px solid #8e8e8e;
+    border-right: 2px solid #8e8e8e;
+    content: "";
+    display: block;
+    height: 8px;
+    margin-top: -6px;
+    pointer-events: none;
+    position: absolute;
+    right: 12px;
+    top: 44%;
+    -webkit-transform-origin: 66% 66%;
+    transform-origin: 66% 66%;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    transition: all .15s ease-in-out;
+    width: 8px
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .nice-select.open .list {
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0)
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .nice-select.open:after {
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg)
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .chil_add_more_daut,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .chil_add_more_son {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    background: #0d67b1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    top: -12px;
+    right: -12px;
+    cursor: pointer;
+    z-index: 1
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .remove_daut,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown .remove_son {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    background: #fff;
+    border: 1px solid #0d67b1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #0d67b1;
+    top: -12px;
+    left: -12px;
+    cursor: pointer;
+    visibility: hidden;
+    font-size: 22px
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown:hover .remove_daut,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input .chil_member_dropdown:hover .remove_son {
+    visibility: visible
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input:nth-child(odd):not(:last-child) {
+    margin-right: 1rem
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .more_rel_ship {
+    text-align: right;
+    margin-bottom: 30px;
+    color: #136da3
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .add_daut3 .chil_add_more_daut,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .add_son3 .chil_add_more_son,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .in_laws,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .in_laws~.chil_group_input {
+    display: none
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .relation.minor.chil_group_input.add_daut1 .chil_add_more_daut,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .relation.minor.chil_group_input.add_son1 .chil_add_more_son {
+    display: none
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .floating-label {
+    display: flex;
+    border: .0625em solid #c8c8c8;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .875em;
+    position: relative;
+    border-radius: 5px;
+    gap: 0;
+    padding: 0 11px;
+    background: #fff
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .floating-label .floating-input {
+    border: none;
+    min-height: 34px;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: 0;
+    width: 100%;
+    padding: 14px 0 0;
+    font-family: inherit
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .floating-label .label-new {
+    color: #6d6e71;
+    position: absolute;
+    pointer-events: none;
+    left: 1.0625em;
+    top: 50%;
+    font-size: 16px;
+    transition: all .2s ease;
+    -moz-transition: .2s ease all;
+    -webkit-transition: all .2s ease;
+    transform: translateY(-50%);
+    text-transform: capitalize;
+    background: #fff;
+    font-weight: 500
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .floating-label .country_label {
+    padding: 13px 4px 0 8px;
+    font-size: 16px
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .floating-label .floating-input:focus~.label-new,.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .floating-label .floating-input:not(:placeholder-shown)~.label-new {
+    padding: 0 5px;
+    top: 13px;
+    left: 6px;
+    background: #fff;
+    color: #8e8e8e;
+    font-size: .775rem
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .get_quotes_btn {
+    color: #1a1a1a;
+    font-family: Poppins,sans-serif;
+    width: 100%;
+    height: 54px;
+    background: transparent linear-gradient(98deg,#fcdf00 0,#ffd618 100%) 0 0 no-repeat padding-box;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 700;
+    border: 1px solid #fcdf00;
+    margin-bottom: 27px;
+    margin-top: 7px;
+    cursor: pointer
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_get_update p {
+    color: #8e8e8e;
+    gap: .4rem;
+    margin-bottom: 10px;
+    font-size: .875rem;
+    display: flex;
+    align-items: center
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_get_update p label {
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+    cursor: pointer
+}
+
+.chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_term_cond {
+    font-size: .75rem;
+    color: #8e8e8e;
+    line-height: 18px
+}
+
+.otp_modal {
+    text-align: center;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000;
+    background-color: #0009;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px)
+}
+
+.otp_modal .otp_verify {
+    max-width: 520px;
+    border-radius: 10px;
+    background: #fff;
+    margin: auto
+}
+
+.otp_modal .otp_verify .otp_header {
+    display: flex;
+    justify-content: center;
+    padding: 12px 16px;
+    box-shadow: 0 0 5px #0000001a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative
+}
+
+.otp_modal .otp_verify .otp_header .otp_back_button {
+    background: 0 0;
+    border: 0;
+    outline: 0;
+    padding: 2px;
+    cursor: pointer;
+    position: absolute;
+    left: 14px
+}
+
+.otp_modal .otp_verify .otp_header h2 {
+    color: #231f20;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 500
+}
+
+.otp_modal .otp_verify .otp_content {
+    padding: 25px 20px;
+    box-sizing: border-box
+}
+
+.otp_modal .otp_verify .otp_content .otp_content_text {
+    font-size: 16px;
+    color: #231f20
+}
+
+.otp_modal .otp_verify .otp_content .otp_mobile_no {
+    color: #231f20;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px
+}
+
+.otp_modal .otp_verify .otp_content .otp_box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0
+}
+
+.otp_modal .otp_verify .otp_content .otp_box .opt_input {
+    -webkit-transition: none;
+    font-family: Poppins,sans-serif;
+    transition: none;
+    width: 55px;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    color: #3f4254;
+    transition: color .15s ease,background-color .15s ease,border-color .15s ease,box-shadow .15s ease;
+    border: 0;
+    box-shadow: 0 0 3px #0000004d;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500
+}
+
+.otp_modal .otp_verify .otp_content .otp_box .opt_input.invalid {
+    box-shadow: 0 0 3px red
+}
+
+.otp_modal .otp_verify .otp_content .invalid_msg {
+    font-size: 14px;
+    color: red;
+    margin-bottom: 6px
+}
+
+.otp_modal .otp_verify .otp_content .success_msg {
+    font-size: 14px;
+    margin-bottom: 6px
+}
+
+.otp_modal .otp_verify .otp_content .resend_txt {
+    color: #ccc;
+    font-size: 14px
+}
+
+.otp_modal .otp_verify .otp_footer {
+    padding: 0 12px 16px
+}
+
+.otp_modal .otp_verify .otp_footer .verify_btn {
+    font-family: Poppins,sans-serif;
+    padding: 12px 20px;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: transparent linear-gradient(98deg,#fcdf00 0,#ffd618 100%) 0 0 no-repeat padding-box;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 0;
+    box-sizing: border-box;
+    width: 50%;
+    margin-bottom: 10px
+}
+
+.chil_why_choose .why_choose-table {
+    border: 1.5px solid #ddd;
+    border-radius: 22px;
+    padding: 3.125rem 3.125rem 2rem;
+    position: relative
+}
+
+.chil_why_choose .why_choose-table h2 {
+    position: absolute;
+    top: -25px;
+    margin: 0 auto;
+    display: inline-block;
+    background: #fff;
+    padding: 4px 15px;
+    color: #231f20;
+    font-size: 1.6rem;
+    left: 50%;
+    transform: translate(-50%)
+}
+
+.chil_why_choose .why_choose-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed
+}
+
+.chil_why_choose .why_choose-table table tr {
+    border: 1px solid #707070
+}
+
+.chil_why_choose .why_choose-table table tr th {
+    padding: 10px 0;
+    text-align: left;
+    font-weight: 500
+}
+
+.chil_why_choose .why_choose-table table td {
+    font-size: .875rem;
+    color: #231f20;
+    border-bottom: 1px solid #ddd
+}
+
+.chil_why_choose .why_choose-table table td.right {
+    background: #e6f2ff;
+    font-weight: 500;
+    display: flex;
+    align-items: start
+}
+
+.chil_why_choose .why_choose-table table td:last-child {
+    padding: 18px 21px
+}
+
+.disclaimer {
+    padding: 20px 0
+}
+
+.disclaimer p {
+    font-size: 12px;
+    line-height: 1.8
+}
+
+.terms_conditions {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26,26,26,.77);
+    z-index: 9999;
+    left: 0;
+    overflow-y: auto
+}
+
+.terms_conditions .modal-content {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto 20px;
+    z-index: 999;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 10px;
+    background: #fff
+}
+
+.terms_conditions .modal-content .modal-inner-content .comon_close_btn {
+    position: absolute;
+    text-align: center;
+    right: 0;
+    top: 0;
+    background: #136da3;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 0 .5rem
+}
+
+.terms_conditions .modal-content .modal-inner-content .red_p {
+    font-size: 1.125rem;
+    font-weight: 500
+}
+
+.terms_conditions .modal-content .modal-inner-content p {
+    font-size: .75rem;
+    padding: .2rem 0
+}
+
+.terms_conditions .modal-content .modal-inner-content ul li {
+    font-size: .75rem;
+    padding: .4rem 0 0 1rem;
+    position: relative
+}
+
+.terms_conditions .modal-content .modal-inner-content ul li:before {
+    position: absolute;
+    content: "";
+    width: 5px;
+    height: 5px;
+    top: 12px;
+    left: 0;
+    background: #F4BB00;
+    border-radius: 50%
+}
+
+@media screen and (max-width: 1140px) {
+    .container {
+        max-width:1140px;
+        margin: 0 auto;
+        width: auto
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        max-width:100%;
+        width: auto
+    }
+
+    .chil_landing {
+        margin: 0
+    }
+
+    .chil_landing .chil_landing_body {
+        flex-direction: column
+    }
+
+    .chil_landing .chil_landing_body .chil_quotes_left {
+        width: 100%;
+        gap: 0;
+        box-sizing: border-box
+    }
+
+    .chil_landing .chil_landing_body .chil_quotes_left .chil_discount {
+        width: 360px
+    }
+
+    .chil_landing .chil_landing_body .chil_quotes_left .chil_discount img {
+        display: none
+    }
+
+    .chil_landing .chil_landing_body .chil_quotes_left .chil_discount .chil_discount_text {
+        text-align: center;
+        width: inherit
+    }
+
+    .chil_landing .chil_landing_body .chil_quotes_left .chil_discount .chil_discount_text .text2 {
+        font-size: 1.25rem
+    }
+
+    .chil_landing .chil_landing_body .chil_quotes_left .chil_discount .chil_discount_text .text1 {
+        position: absolute;
+        top: -14px;
+        background: #295d9e;
+        color: #fff;
+        padding: 3px 13px;
+        border-radius: 12px;
+        left: 25px
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box {
+        width: 100%
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body {
+        background: #fff;
+        border: 0;
+        border-radius: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_mobile_acc {
+        border: 1px solid #c8c8c8;
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 20px
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_mobile_acc:after {
+        content: "";
+        height: 10px;
+        width: 10px;
+        display: inline-block;
+        border: 1px solid #231f20;
+        border-top: 0;
+        border-right: 0;
+        margin-left: 5px;
+        vertical-align: .255em;
+        position: absolute;
+        transform: rotate(-45deg);
+        top: 30%;
+        right: 14px;
+        transition: all .2s ease-in-out 0s;
+        z-index: 1
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_mobile_acc.on {
+        margin-bottom: 0;
+        border-bottom: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body h3:not(.chil_mobile_acc) {
+        display: none
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chid_mob_body {
+        display: none;
+        padding: 20px 20px 0;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        border-radius: 0 0 6px 6px;
+        border-top: 0
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row {
+        display: block
+    }
+
+    .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .chil_insured_body .chil_inline_row .chil_group_input {
+        margin-bottom: 20px;
+        width: 100%
+    }
+
+    .chil_why_choose .container {
+        max-width: 100%
+    }
+
+    .chil_why_choose .container .why_choose-table {
+        padding: 1.3rem;
+        border: 0
+    }
+
+    .chil_why_choose .container .why_choose-table h2 {
+        position: relative;
+        left: inherit;
+        transform: inherit;
+        top: inherit;
+        padding: 4px 15px 7px 0;
+        font-size: 1.125rem;
+        font-weight: 500
+    }
+
+    .chil_facts {
+        width: 100%;
+        box-sizing: border-box;
+        background: #f8f7fc
+    }
+
+    .chil_facts ul {
+        display: block
+    }
+
+    .chil_facts ul li {
+        display: flex;
+        flex-direction: row;
+        padding: 15px;
+        align-items: center
+    }
+
+    .chil_facts ul li img {
+        margin-bottom: 0;
+        margin-right: 30px
+    }
+
+    .chil_facts ul li p {
+        position: relative;
+        text-align: left;
+        width: 100%;
+        font-size: .875rem
+    }
+
+    .chil_facts ul li:not(:last-child) p:after {
+        content: "";
+        position: absolute;
+        border-bottom: 1px solid #ccc;
+        bottom: -23px;
+        width: 100%;
+        left: 0
+    }
+
+    .disclaimer {
+        padding: 0 14px 20px
+    }
+
+    .sem_travel .chil_landing .chil_landing_body #care-quote-box .chil_quotes_right .get_quotes_btn {
+        z-index: 99;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        border-radius: 0
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header .inner_header {
+        padding:0 1rem
+    }
+
+    header .inner_header .number .call_btn span {
+        display: none
+    }
+}
