@@ -8,14 +8,14 @@ import { useNavigate } from "react-router-dom";
 const LandingPage = () => {
   const navigate = useNavigate(); // <-- useNavigate hook must be here
 
-  const [selfAge, setSelfAge] = useState(18);
-  const [spouseAge, setSpouseAge] = useState(18);
-  const [sonAge, setSonAge] = useState(18);
-  const [daughterAge, setDaughterAge] = useState(18);
-  const [fatherAge, setFatherAge] = useState(18);
-  const [motherAge, setMotherAge] = useState(18);
-  const [fatherInLawAge, setFatherInLawAge] = useState(18);
-  const [motherInLawAge, setMotherInLawAge] = useState(18);
+  const [selfAge, setSelfAge] = useState("");
+  const [spouseAge, setSpouseAge] = useState("");
+  const [sonAge, setSonAge] = useState("");
+  const [daughterAge, setDaughterAge] = useState("");
+  const [fatherAge, setFatherAge] = useState("");
+  const [motherAge, setMotherAge] = useState("");
+  const [fatherInLawAge, setFatherInLawAge] = useState("");
+  const [motherInLawAge, setMotherInLawAge] = useState("");
   const [showMore, setShowMore] = useState(false);
 
   const [planType, setPlanType] = useState("Gold");
@@ -229,7 +229,7 @@ const LandingPage = () => {
                   onChange={(e) => setSelfAge(e.target.value)}
                   id="selfAge"
                   className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   style={{ backgroundImage: "none" }}
                 >
                   <option value="">Age</option>
@@ -266,6 +266,7 @@ const LandingPage = () => {
                   style={{ backgroundImage: "none" }}
                 >
                   <option value="">Age</option>
+
                   {Array.from({ length: 13 }, (_, i) => {
                     const age = 18 + i;
                     return (
@@ -575,9 +576,9 @@ const LandingPage = () => {
           </div>
         </div>
         {/* This is for the table */}
-        <div class="container">
+        <div className="container">
           <h2>Why Choose Care Supreme Health Plan</h2>
-          <div class="table-wrapper">
+          <div className="table-wrapper">
             <table>
               <thead>
                 <tr>
