@@ -14,7 +14,7 @@ const LandingPage = () => {
   const [daughterAge, setDaughterAge] = useState("");
   const [fatherAge, setFatherAge] = useState("");
   const [motherAge, setMotherAge] = useState("");
-  const [fatherInLawAge, setFatherInLawAge] = useState(""); 
+  const [fatherInLawAge, setFatherInLawAge] = useState("");
   const [motherInLawAge, setMotherInLawAge] = useState("");
   const [showMore, setShowMore] = useState(false);
 
@@ -633,11 +633,11 @@ const LandingPage = () => {
         </div>
 
         {/* Disclaimer / content */}
-        <div className="p-6 rounded-lg shadow-md text-gray-800 text-sm md:text-base">
+        <div className="max-w-6xl mx-auto mt-6 p-6 rounded-lg bg-white text-gray-800 text-sm">
           <p className="mb-1">
-            Disclaimer: Information above is just for reference. Kindly read T &
-            C of policy thoroughly, Do refer IRDAI guidelines for tax exemption
-            conditions.
+            <strong>Disclaimer</strong>: Information above is just for
+            reference. Kindly read T &amp; C of policy thoroughly, Do refer
+            IRDAI guidelines for tax exemption conditions.
           </p>
 
           <p className="mb-1">
@@ -650,7 +650,7 @@ const LandingPage = () => {
           <p className="mb-1">
             Number of Cashless Healthcare Providers as of Feb'25
           </p>
-          <p className="mb-1">#India Insurance Summit & Awards 2024.</p>
+          <p className="mb-1">#India Insurance Summit &amp; Awards 2024.</p>
 
           <p className="mb-1">
             Care Health Insurance Limited Registered Office: 5th Floor, 19
