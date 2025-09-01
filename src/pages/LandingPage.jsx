@@ -30,6 +30,10 @@ const LandingPage = () => {
   const [selfAgeError, setSelfAgeError] = useState("");
   const [spouseAgeError, setSpouseAgeError] = useState("");
 
+  //api handler
+  const [loading, setLoading] = useState(false); // for loader
+  const [apiError, setApiError] = useState(""); // for API/server error
+
   const calculatePremium = async () => {
     let valid = true;
 
@@ -62,6 +66,8 @@ const LandingPage = () => {
     if (!valid) return;
 
     try {
+      setLoading(true); // show loader
+      setApiError(""); // reset error
       const requestBody = {
         planType,
         selfAge: Number(selfAge),
@@ -74,11 +80,13 @@ const LandingPage = () => {
         email,
         name,
       };
+
       console.log(requestBody);
 
       const response = await axios.post(
         "https://localhost:7270/api/PremiumCalculator/getqoute",
-        requestBody
+        requestBody,
+        { timeout: 10000 } // optional timeout
       );
 
       console.log("API Response:", response.data);
@@ -86,13 +94,28 @@ const LandingPage = () => {
       // Navigate to result page
       navigate("/premium-result", { state: { data: response.data } });
     } catch (error) {
-      console.error("Error fetching premium:", error);
+      let message = "Something went wrong. Please try again.";
+      if (error.response) {
+        message = `Server Error (${error.response.status})`;
+      } else if (error.request) {
+        message = "Server not reachable. Please check your connection.";
+      } else {
+        message = error.message;
+      }
+      setApiError(message); // show error
+    } finally {
+      setLoading(false); // hide loader
     }
   };
 
   return (
     <>
       <Navbar />
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
+          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
 
       {/* Main container */}
       <div className="min-h-screen flex flex-col items-center justify-center px-1 py-4 m-1">
@@ -530,14 +553,22 @@ const LandingPage = () => {
             </div>
 
             {/* Calculate Premium Button */}
+
             <div className="mt-6">
+              {apiError && (
+                <div className="mb-4 p-3 text-red-700 bg-red-100 rounded">
+                  {apiError}
+                </div>
+              )}
               <button
                 type="button"
-                onClick={calculatePremium} // attach here
-                className="w-full px-6 py-3 bg-gradient-to-r text-white from-red-600 to-black text-white font-semibold rounded-lg shadow-md 
-                hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition"
+                onClick={calculatePremium}
+                disabled={loading}
+                className="w-full px-6 py-3 bg-gradient-to-r text-white from-red-600 to-black font-semibold rounded-lg shadow-md 
+             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition
+             disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Calculate Premium
+                {loading ? "Calculating..." : "Calculate Premium"}
               </button>
             </div>
 

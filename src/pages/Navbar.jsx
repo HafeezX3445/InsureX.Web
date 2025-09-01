@@ -3,26 +3,21 @@ import logo from "../assets/InsureX.png";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-16">
-          {/* Logo on the left */}
-          <div className="flex-shrink-0 ">
-            <img
-              className="h-14 w-auto rounded-full md:rounded-md"
-              src={logo}
-              alt="Logo"
-            />
-          </div>
+    <nav className="relative h-14 flex shadow-md">
+      {/* Left Section with Dark Red Gradient */}
+      <div className="flex items-center w-1/2 bg-gradient-to-r from-[#8B0000] to-[#1C1C1C] relative">
+        <img className="h-12 w-auto rounded-md ml-4" src={logo} alt="Logo" />
+        <span className="ml-3 text-2xl font-semibold text-white">InsureX</span>
 
-          {/* Empty space (optional for alignment) */}
-          <div className="flex-1 text-2xl font-bold bg-gradient-to-r from-red-600 to-black bg-clip-text text-transparent ml-2.5">
-            InsureX
-          </div>
-          
-        </div>
-        
+        {/* Divider Arrow */}
+        <div
+          className="absolute top-0 right-[-20px] w-10 h-full bg-gradient-to-r from-[#8B0000] to-[#1C1C1C]"
+          style={{ clipPath: "polygon(0 0, 100% 50%, 0 100%)" }}
+        ></div>
       </div>
+
+      {/* Right Section – Subtle Black Blend */}
+      <div className="w-1/2 bg-gradient-to-r from-[#1C1C1C] to-[#000000]"></div>
     </nav>
   );
 };
