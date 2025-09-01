@@ -122,14 +122,18 @@ const LandingPage = () => {
     if (!valid) return;
 
     try {
-      setLoading(true); // show loader
-      setApiError(""); // reset error
+      setLoading(true);
+      setApiError("");
       const requestBody = {
         planType,
         selfAge: Number(selfAge),
         spouseAge: Number(spouseAge),
         sonAge: Number(sonAge),
         daughterAge: Number(daughterAge),
+        motherAge: Number(motherAge),
+        fatherAge: Number(fatherAge),
+        motherInLawAge: Number(motherInLawAge),
+        fatherInLawAge: Number(fatherInLawAge),
 
         pincode,
         phoneNumber,
@@ -174,15 +178,15 @@ const LandingPage = () => {
 
       {/* Main container */}
       <div className="min-h-screen flex flex-col items-center justify-center px-1 py-4 m-1">
-              <h2
-                className="
+        <h2
+          className="
             text-2xl sm:text-3xl md:text-4xl 
             font-bold mb-6 
             bg-gradient-to-r from-red-600 to-black bg-clip-text text-transparent 
             p-3 leading-snug 
             text-center
           "
-              >
+        >
           InsureX Top Leading Insurance Company
         </h2>
         <div className="flex flex-col md:flex-row min-h-[400px] mb-10 ml-10 mr-10">
@@ -194,7 +198,7 @@ const LandingPage = () => {
               <div className="hidden md:block flex-shrink-0">
                 <img
                   src="https://www.careinsurance.com/images/care-supreme-banner.png"
-                  alt="Care Insurance"
+                  alt="InsureX"
                   width="161"
                   height="215"
                   className="object-contain"
@@ -292,6 +296,7 @@ const LandingPage = () => {
                   options={plans}
                   placeholder="Select Plan"
                   className="w-full sm:w-64"
+                  showClear
                 />
               </div>
             </div>
@@ -313,6 +318,7 @@ const LandingPage = () => {
                   options={ageOptions}
                   placeholder="Age"
                   className="w-full"
+                  showClear
                 />
                 {selfAgeError && (
                   <span className="text-red-600 text-sm mt-1 block">
@@ -336,6 +342,7 @@ const LandingPage = () => {
                   options={ageOptions} // ✅ Same options
                   placeholder="Age"
                   className="w-full"
+                  showClear
                 />
 
                 {spouseAgeError && (
@@ -362,6 +369,7 @@ const LandingPage = () => {
                   options={sondaughterAgeOptions}
                   placeholder="Age"
                   className="w-full"
+                  showClear
                 />
               </div>
 
@@ -380,6 +388,7 @@ const LandingPage = () => {
                   options={sondaughterAgeOptions}
                   placeholder="Age"
                   className="w-full"
+                  showClear
                 />
               </div>
             </div>
@@ -413,6 +422,7 @@ const LandingPage = () => {
                       options={ageOptions} // ✅ Same options
                       placeholder="Age"
                       className="w-full"
+                      showClear
                     />
                   </div>
 
@@ -431,6 +441,7 @@ const LandingPage = () => {
                       options={ageOptions} // ✅ Same options
                       placeholder="Age"
                       className="w-full"
+                      showClear
                     />
                   </div>
                 </div>
@@ -450,6 +461,7 @@ const LandingPage = () => {
                       options={ageOptions} // ✅ Same options
                       placeholder="Age"
                       className="w-full"
+                      showClear
                     />
                   </div>
 
@@ -468,6 +480,7 @@ const LandingPage = () => {
                       options={ageOptions} // ✅ Same options
                       placeholder="Age"
                       className="w-full"
+                      showClear={!!motherInLawAge}
                     />
                   </div>
                 </div>
@@ -662,11 +675,11 @@ const LandingPage = () => {
           <p className="mb-1">#India Insurance Summit &amp; Awards 2024.</p>
 
           <p className="mb-1">
-            Care Health Insurance Limited Registered Office: 5th Floor, 19
+            InsureX Insurance Limited Registered Office: 5th Floor, 19
             Chawla House, Nehru Place, New Delhi-110019. Correspondence Office:
             Unit No. 604 - 607, 6th Floor, Tower C, Unitech Cyber Park,
             Sector-39, Gurugram -122001 (Haryana). Website:
-            www.careinsurance.com
+            www.InsureX.com
           </p>
 
           <p>
