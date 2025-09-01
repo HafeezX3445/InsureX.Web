@@ -318,7 +318,7 @@ const LandingPage = () => {
                   options={ageOptions}
                   placeholder="Age"
                   className="w-full"
-                  showClear
+                      showClear={!!selfAge}
                 />
                 {selfAgeError && (
                   <span className="text-red-600 text-sm mt-1 block">
@@ -342,7 +342,7 @@ const LandingPage = () => {
                   options={ageOptions} // ✅ Same options
                   placeholder="Age"
                   className="w-full"
-                  showClear
+                      showClear={!!spouseAge}
                 />
 
                 {spouseAgeError && (
@@ -369,7 +369,7 @@ const LandingPage = () => {
                   options={sondaughterAgeOptions}
                   placeholder="Age"
                   className="w-full"
-                  showClear
+                      showClear={!!sonAge}
                 />
               </div>
 
@@ -388,7 +388,7 @@ const LandingPage = () => {
                   options={sondaughterAgeOptions}
                   placeholder="Age"
                   className="w-full"
-                  showClear
+                      showClear={!!daughterAge}
                 />
               </div>
             </div>
@@ -422,7 +422,7 @@ const LandingPage = () => {
                       options={ageOptions} // ✅ Same options
                       placeholder="Age"
                       className="w-full"
-                      showClear
+                      showClear={!!fatherAge}
                     />
                   </div>
 
@@ -441,7 +441,7 @@ const LandingPage = () => {
                       options={ageOptions} // ✅ Same options
                       placeholder="Age"
                       className="w-full"
-                      showClear
+                      showClear={!!motherAge}
                     />
                   </div>
                 </div>
@@ -461,7 +461,7 @@ const LandingPage = () => {
                       options={ageOptions} // ✅ Same options
                       placeholder="Age"
                       className="w-full"
-                      showClear
+                      showClear={!!fatherInLawAge}
                     />
                   </div>
 
