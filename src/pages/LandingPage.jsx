@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./../styles/landing.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../config/axios";
 
 const LandingPage = () => {
   const navigate = useNavigate(); // <-- useNavigate hook must be here
@@ -83,10 +84,9 @@ const LandingPage = () => {
 
       console.log(requestBody);
 
-      const response = await axios.post(
-        "https://localhost:7270/api/PremiumCalculator/getqoute",
-        requestBody,
-        { timeout: 10000 } // optional timeout
+      const response = await api.post(
+        "PremiumCalculator/getqoute", // 👈 only endpoint
+        requestBody
       );
 
       console.log("API Response:", response.data);
