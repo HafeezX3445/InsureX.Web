@@ -5,8 +5,30 @@ import "./../styles/landing.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../config/axios";
+import { toast } from "react-toastify";
+import { Dropdown } from "primereact/dropdown";
 
 const LandingPage = () => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const plans = [
+    { label: "Plan 1", value: 1 },
+    { label: "Plan 2", value: 2 },
+    { label: "Plan 3", value: 3 },
+    { label: "Plan 4", value: 4 },
+    { label: "Plan 5", value: 5 },
+    { label: "Plan 6", value: 6 },
+  ];
+
+  const ageOptions = Array.from({ length: 99 - 18 + 1 }, (_, i) => {
+    const age = 18 + i;
+    return { label: `${age} yrs`, value: age };
+  });
+
+  const sondaughterAgeOptions = Array.from({ length: 95 }, (_, i) => {
+    const age = 5 + i;
+    return { label: `${age} yrs`, value: age };
+  });
+
   const navigate = useNavigate(); // <-- useNavigate hook must be here
 
   const [selfAge, setSelfAge] = useState("");
@@ -37,6 +59,23 @@ const LandingPage = () => {
 
   const calculatePremium = async () => {
     let valid = true;
+    // Example validate function
+    const validateFamilyMembers = (selectedMembers) => {
+      // selectedMembers = array of selected ages (filter out empty values)
+      const chosen = selectedMembers.filter((m) => m !== "");
+
+      if (chosen.length < 1) {
+        toast.error("Please select at least 1 family member");
+        return false;
+      }
+
+      if (chosen.length > 4) {
+        toast.error("You can select up to 4 family members only");
+        return false;
+      }
+
+      return true; // ✅ validation passed
+    };
 
     // Reset errors
     setSelfAgeError("");
@@ -55,26 +94,46 @@ const LandingPage = () => {
       setPhoneError("Please enter a valid 10-digit Mobile Number.");
       valid = false;
     }
-    if (!selfAge) {
-      setSelfAgeError("Please select Self age.");
+    // ✅ Check if none are selected
+    // Count how many are selected
+    const selectedCount = [
+      selfAge,
+      spouseAge,
+      sonAge,
+      daughterAge,
+      fatherAge,
+      motherAge,
+      fatherInLawAge,
+      motherInLawAge,
+    ].filter(Boolean).length;
+
+    // ✅ Minimum 1 required
+    if (selectedCount < 1) {
+      toast.error("Please select age for at least one person.");
       valid = false;
     }
-    if (!spouseAge) {
-      setSpouseAgeError("Please select Spouse age.");
+
+    // ✅ Maximum 4 allowed
+    if (selectedCount > 4) {
+      toast.error("You can select up to 4 members only.");
       valid = false;
     }
 
     if (!valid) return;
 
     try {
-      setLoading(true); // show loader
-      setApiError(""); // reset error
+      setLoading(true);
+      setApiError("");
       const requestBody = {
         planType,
         selfAge: Number(selfAge),
         spouseAge: Number(spouseAge),
         sonAge: Number(sonAge),
         daughterAge: Number(daughterAge),
+        motherAge: Number(motherAge),
+        fatherAge: Number(fatherAge),
+        motherInLawAge: Number(motherInLawAge),
+        fatherInLawAge: Number(fatherInLawAge),
 
         pincode,
         phoneNumber,
@@ -119,9 +178,16 @@ const LandingPage = () => {
 
       {/* Main container */}
       <div className="min-h-screen flex flex-col items-center justify-center px-1 py-4 m-1">
-        <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-red-600 to-black bg-clip-text text-transparent p-3">
-          {" "}
-          InsureX Top leading Insurance company{" "}
+        <h2
+          className="
+            text-2xl sm:text-3xl md:text-4xl 
+            font-bold mb-6 
+            bg-gradient-to-r from-red-600 to-black bg-clip-text text-transparent 
+            p-3 leading-snug 
+            text-center
+          "
+        >
+          InsureX Top Leading Insurance Company
         </h2>
         <div className="flex flex-col md:flex-row min-h-[400px] mb-10 ml-10 mr-10">
           {/* First Div */}
@@ -132,7 +198,7 @@ const LandingPage = () => {
               <div className="hidden md:block flex-shrink-0">
                 <img
                   src="https://www.careinsurance.com/images/care-supreme-banner.png"
-                  alt="Care Insurance"
+                  alt="InsureX"
                   width="161"
                   height="215"
                   className="object-contain"
@@ -207,34 +273,32 @@ const LandingPage = () => {
 
           {/* Second Div */}
           <div className="w-full max-w-md border border-gray-300 bg-gray-100 p-4 rounded-lg mx-auto">
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 text-center md:text-left mb-4">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold text-gray-800 text-center mb-4">
               Members to be Insured
             </p>
 
             {/* Plan selection row */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center mb-4">
+              {/* Label */}
               <label
                 htmlFor="plans"
-                className="text-md font-medium text-gray-700 mb-2 sm:mb-0"
+                className="text-md font-medium text-gray-700 mb-2 sm:mb-0 sm:mr-4"
               >
                 Choose a Plan
               </label>
-              <select
-                id="plans"
-                defaultValue="plan1"
-                className="w-full sm:w-44 p-2.5 bg-white border border-gray-300 rounded-xl shadow-md
-                  text-gray-700 font-medium appearance-none
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                  hover:border-blue-400 transition duration-200 ease-in-out"
-                style={{ backgroundImage: "none" }}
-              >
-                <option value="1">Plan 1</option>
-                <option value="2">Plan 2</option>
-                <option value="3">Plan 3</option>
-                <option value="4">Plan 4</option>
-                <option value="5">Plan 5</option>
-                <option value="6">Plan 6</option>
-              </select>
+
+              {/* Dropdown */}
+              <div className="w-full sm:w-auto sm:flex-1 sm:flex sm:justify-end">
+                <Dropdown
+                  id="plans"
+                  value={selectedPlan}
+                  onChange={(e) => setSelectedPlan(e.value)}
+                  options={plans}
+                  placeholder="Select Plan"
+                  className="w-full sm:w-64"
+                  showClear
+                />
+              </div>
             </div>
 
             {/* Self & Spouse Dropdowns */}
@@ -247,24 +311,15 @@ const LandingPage = () => {
                 >
                   Self
                 </label>
-                <select
-                  value={selfAge}
-                  onChange={(e) => setSelfAge(e.target.value)}
+                <Dropdown
                   id="selfAge"
-                  className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  style={{ backgroundImage: "none" }}
-                >
-                  <option value="">Age</option>
-                  {Array.from({ length: 99 - 18 + 1 }, (_, i) => {
-                    const age = 18 + i;
-                    return (
-                      <option key={age} value={age}>
-                        {age} yrs
-                      </option>
-                    );
-                  })}
-                </select>
+                  value={selfAge}
+                  onChange={(e) => setSelfAge(e.value)}
+                  options={ageOptions}
+                  placeholder="Age"
+                  className="w-full"
+                      showClear={!!selfAge}
+                />
                 {selfAgeError && (
                   <span className="text-red-600 text-sm mt-1 block">
                     {selfAgeError}
@@ -280,25 +335,16 @@ const LandingPage = () => {
                 >
                   Spouse
                 </label>
-                <select
+                <Dropdown
                   id="spouseAge"
                   value={spouseAge}
-                  onChange={(e) => setSpouseAge(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  style={{ backgroundImage: "none" }}
-                >
-                  <option value="">Age</option>
+                  onChange={(e) => setSpouseAge(e.value)}
+                  options={ageOptions} // ✅ Same options
+                  placeholder="Age"
+                  className="w-full"
+                      showClear={!!spouseAge}
+                />
 
-                  {Array.from({ length: 13 }, (_, i) => {
-                    const age = 18 + i;
-                    return (
-                      <option key={age} value={age}>
-                        {age} yrs
-                      </option>
-                    );
-                  })}
-                </select>
                 {spouseAgeError && (
                   <span className="text-red-600 text-sm mt-1 block">
                     {spouseAgeError}
@@ -316,24 +362,15 @@ const LandingPage = () => {
                 >
                   Son
                 </label>
-                <select
+                <Dropdown
                   id="sonAge"
                   value={sonAge}
-                  onChange={(e) => setSonAge(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  style={{ backgroundImage: "none" }}
-                >
-                  <option value="">Age</option>
-                  {Array.from({ length: 13 }, (_, i) => {
-                    const age = 5 + i;
-                    return (
-                      <option key={age} value={age}>
-                        {age} yrs
-                      </option>
-                    );
-                  })}
-                </select>
+                  onChange={(e) => setSonAge(e.value)}
+                  options={sondaughterAgeOptions}
+                  placeholder="Age"
+                  className="w-full"
+                      showClear={!!sonAge}
+                />
               </div>
 
               {/* Daughter Dropdown */}
@@ -344,24 +381,15 @@ const LandingPage = () => {
                 >
                   Daugther
                 </label>
-                <select
+                <Dropdown
                   id="daughterAge"
                   value={daughterAge}
-                  onChange={(e) => setDaughterAge(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  style={{ backgroundImage: "none" }}
-                >
-                  <option value="">Age</option>
-                  {Array.from({ length: 13 }, (_, i) => {
-                    const age = 5 + i;
-                    return (
-                      <option key={age} value={age}>
-                        {age} yrs
-                      </option>
-                    );
-                  })}
-                </select>
+                  onChange={(e) => setDaughterAge(e.value)}
+                  options={sondaughterAgeOptions}
+                  placeholder="Age"
+                  className="w-full"
+                      showClear={!!daughterAge}
+                />
               </div>
             </div>
 
@@ -387,52 +415,34 @@ const LandingPage = () => {
                     >
                       Father
                     </label>
-                    <select
+                    <Dropdown
                       id="fatherAge"
                       value={fatherAge}
-                      onChange={(e) => setFatherAge(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      style={{ backgroundImage: "none" }}
-                    >
-                      <option value="">Age</option>
-                      {Array.from({ length: 13 }, (_, i) => {
-                        const age = 18 + i;
-                        return (
-                          <option key={age} value={age}>
-                            {age} yrs
-                          </option>
-                        );
-                      })}
-                    </select>
+                      onChange={(e) => setFatherAge(e.value)}
+                      options={ageOptions} // ✅ Same options
+                      placeholder="Age"
+                      className="w-full"
+                      showClear={!!fatherAge}
+                    />
                   </div>
 
                   {/* Mother */}
                   <div className="flex-1 min-w-[150px]">
                     <label
                       htmlFor="motherAge"
-                      value={motherAge}
-                      onChange={(e) => setMotherAge(e.target.value)}
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
                       Mother
                     </label>
-                    <select
+                    <Dropdown
                       id="motherAge"
-                      className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      style={{ backgroundImage: "none" }}
-                    >
-                      <option value="">Age</option>
-                      {Array.from({ length: 13 }, (_, i) => {
-                        const age = 18 + i;
-                        return (
-                          <option key={age} value={age}>
-                            {age} yrs
-                          </option>
-                        );
-                      })}
-                    </select>
+                      value={motherAge}
+                      onChange={(e) => setMotherAge(e.value)}
+                      options={ageOptions} // ✅ Same options
+                      placeholder="Age"
+                      className="w-full"
+                      showClear={!!motherAge}
+                    />
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:flex-wrap sm:space-x-6 space-y-4 sm:space-y-0">
@@ -444,53 +454,34 @@ const LandingPage = () => {
                     >
                       Father in Law
                     </label>
-                    <select
+                    <Dropdown
                       id="fatherInLawAge"
                       value={fatherInLawAge}
-                      onChange={(e) => setFatherInLawAge(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      style={{ backgroundImage: "none" }}
-                    >
-                      {" "}
-                      <option value="">Age</option>
-                      {Array.from({ length: 13 }, (_, i) => {
-                        const age = 18 + i;
-                        return (
-                          <option key={age} value={age}>
-                            {age} yrs
-                          </option>
-                        );
-                      })}
-                    </select>
+                      onChange={(e) => setFatherInLawAge(e.value)}
+                      options={ageOptions} // ✅ Same options
+                      placeholder="Age"
+                      className="w-full"
+                      showClear={!!fatherInLawAge}
+                    />
                   </div>
 
                   {/* Motherinlaw */}
                   <div className="flex-1 min-w-[150px]">
                     <label
                       htmlFor="motherInLawAge"
-                      value={motherInLawAge}
-                      onChange={(e) => setMotherInLawAge(e.target.value)}
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
                       Mother In Law
                     </label>
-                    <select
+                    <Dropdown
                       id="motherInLawAge"
-                      className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      style={{ backgroundImage: "none" }}
-                    >
-                      <option value="">Age</option>
-                      {Array.from({ length: 13 }, (_, i) => {
-                        const age = 18 + i;
-                        return (
-                          <option key={age} value={age}>
-                            {age} yrs
-                          </option>
-                        );
-                      })}
-                    </select>
+                      value={motherInLawAge}
+                      onChange={(e) => setMotherInLawAge(e.value)}
+                      options={ageOptions} // ✅ Same options
+                      placeholder="Age"
+                      className="w-full"
+                      showClear={!!motherInLawAge}
+                    />
                   </div>
                 </div>
               </div>
@@ -684,11 +675,11 @@ const LandingPage = () => {
           <p className="mb-1">#India Insurance Summit &amp; Awards 2024.</p>
 
           <p className="mb-1">
-            Care Health Insurance Limited Registered Office: 5th Floor, 19
+            InsureX Insurance Limited Registered Office: 5th Floor, 19
             Chawla House, Nehru Place, New Delhi-110019. Correspondence Office:
             Unit No. 604 - 607, 6th Floor, Tower C, Unitech Cyber Park,
             Sector-39, Gurugram -122001 (Haryana). Website:
-            www.careinsurance.com
+            www.InsureX.com
           </p>
 
           <p>

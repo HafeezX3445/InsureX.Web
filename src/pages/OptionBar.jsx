@@ -4,29 +4,31 @@ import logo from "../assets/logo.png";
 export default function OptionBar() {
   return (
     <>
-      {/* Top Bar */}
-      <nav className="relative h-14 flex shadow-md">
-        {/* Left Section */}
-        <div className="flex items-center w-[70%] bg-gradient-to-r from-[#8B0000] to-[#1C1C1C] relative">
-          <span className="ml-4 sm:ml-6 md:ml-10 lg:ml-16 text-xs md:text-xl font-semibold text-white">
+      {/* Top Option Bar */}
+      <nav className="flex h-16 shadow-md font-medium relative">
+        <div className="flex items-center w-1/2 bg-[#B91C1C] text-white px-6">
+          <span className="ml-3 text-2xl font-semibold">
             Save tax up to ₹75,000~ u/s 80D
           </span>
-          <div
-            className="hidden md:block absolute top-0 right-[-30px] w-12 h-full bg-gradient-to-r from-[#8B0000] to-[#1C1C1C]"
-            style={{ clipPath: "polygon(0 0, 80% 50%, 0 100%)" }}
-          />
         </div>
 
-        {/* Right Section */}
-        <div className="flex items-center justify-center w-[30%] bg-gradient-to-r from-[#1C1C1C] to-black text-white text-sm md:text-base">
-          <span className="ml-4 sm:ml-6 md:ml-10 lg:ml-16 text-xs md:text-xl font-semibold text-white">
-            Buy New Policy : 1800-102-XXXX
+        <div className="flex items-center justify-center w-1/2 bg-[#F5E6CA] text-black px-6">
+          <span className="text-base md:text-lg font-medium">
+            Call Now: 1800-102-4499
           </span>
         </div>
+
+        <svg
+          className="absolute left-1/2 top-0 h-full w-12 -translate-x-1/2"
+          viewBox="0 0 20 80"
+          preserveAspectRatio="none"
+        >
+          <path d="M0,0 Q10,40 0,80 L20,80 L20,0 Z" fill="#F5E6CA" />
+        </svg>
       </nav>
 
-      {/* Main Navigation */}
-      <nav className="relative h-16 flex items-center justify-between shadow-md px-6 bg-gradient-to-r from-[#B22222] via-[#8B0000] to-[#660000] text-white transition-all duration-500 ease-in-out">
+      {/* Main Navigation Bar – Beige Version */}
+      <nav className="relative h-16 flex items-center justify-between shadow-md px-6 bg-[#F5E6CA] text-[#B91C1C] transition-all duration-500 ease-in-out">
         {/* Logo */}
         <div className="flex items-center">
           <img className="h-12 w-auto rounded-md" src={logo} alt="Logo" />
@@ -35,26 +37,26 @@ export default function OptionBar() {
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center justify-evenly flex-1 ml-8 font-medium">
           {/* Health Plans Dropdown */}
-          <li className="group relative cursor-pointer px-3 py-2 rounded-lg hover:bg-red-600/30 transition duration-300 ease-in-out">
+          <li className="group relative cursor-pointer px-3 py-2 rounded-lg hover:bg-[#B91C1C]/10 transition duration-300 ease-in-out">
             <span>Health Plans</span>
-            <div className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white/95 backdrop-blur-lg shadow-xl rounded-xl p-6 w-[500px] animate-fadeIn">
-              <div className="grid grid-cols-2 gap-3 text-gray-800">
+            <div className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-[#FFF3E0] shadow-xl rounded-xl p-6 w-[500px] animate-fadeIn">
+              <div className="grid grid-cols-2 gap-3 text-[#B91C1C]">
                 {[
-                  "Health Insurance Plans",
-                  "Family Health Insurance",
-                  "Individual Health Insurance",
-                  "1 Crore Health Insurance Plan",
-                  "Senior Citizen Health Insurance",
-                  "Maternity Health Insurance",
-                  "Diabetes Cover",
-                  "Heart Insurance",
-                  "Super Top Up",
-                  "Cancer Insurance",
+                  "Individual Health Plan",
+                  "Family Health Plan",
+                  "Senior Citizen Plan",
+                  "Maternity Plan",
+                  "Critical Illness Cover",
+                  "Top Up Health Insurance",
+                  "Diabetes Insurance",
+                  "Heart Care Plan",
+                  "Cancer Cover",
+                  "1 Crore Health Insurance",
                 ].map((link) => (
                   <a
                     key={link}
                     href="#"
-                    className="block px-3 py-2 rounded-md bg-red-50 text-gray-800 hover:bg-red-100 hover:text-red-600 transition-all duration-300 shadow-sm"
+                    className="block px-3 py-2 rounded-md hover:text-[#8B0000] transition-all duration-300"
                   >
                     {link}
                   </a>
@@ -64,24 +66,24 @@ export default function OptionBar() {
           </li>
 
           {/* Other Menu Items */}
-          {["Renew", "Contact Us"].map((item) => (
+          {["Renew Policy", "Contact Us"].map((item) => (
             <li
               key={item}
-              className="cursor-pointer px-3 py-2 rounded-lg hover:bg-red-600/30 transition duration-300 ease-in-out"
+              className="cursor-pointer px-3 py-2 rounded-lg hover:bg-[#B91C1C]/10 transition duration-300 ease-in-out"
             >
               {item}
             </li>
           ))}
 
           {/* Support Dropdown */}
-          <li className="group relative cursor-pointer px-3 py-2 rounded-lg hover:bg-red-600/30 transition duration-300 ease-in-out">
+          <li className="group relative cursor-pointer px-3 py-2 rounded-lg hover:bg-[#B91C1C]/10 transition duration-300 ease-in-out">
             <span>Support</span>
-            <div className="absolute right-0 mt-2 hidden group-hover:flex flex-col bg-white/95 backdrop-blur-lg shadow-xl rounded-xl p-4 w-48 animate-fadeIn">
+            <div className="absolute right-0 mt-2 hidden group-hover:flex flex-col bg-[#FFF3E0] shadow-xl rounded-xl p-4 w-48 animate-fadeIn">
               {["Help Center", "FAQs"].map((link) => (
                 <a
                   key={link}
                   href="#"
-                  className="block px-3 py-2 rounded-md bg-red-50 text-gray-800 hover:bg-red-100 hover:text-red-600 transition-all duration-300 shadow-sm"
+                  className="block px-3 py-2 rounded-md hover:text-[#8B0000] transition-all duration-300"
                 >
                   {link}
                 </a>
@@ -92,7 +94,7 @@ export default function OptionBar() {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button className="p-2 rounded-md hover:bg-red-600/30 transition duration-300">
+          <button className="p-2 rounded-md hover:bg-[#B91C1C]/10 transition duration-300">
             <svg
               className="h-6 w-6"
               fill="none"
