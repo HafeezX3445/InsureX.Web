@@ -29,12 +29,13 @@ const LandingPage = () => {
     return { label: `${age} yrs`, value: age };
   });
 
-  const navigate = useNavigate(); // <-- useNavigate hook must be here
-
+  const navigate = useNavigate();
   const [selfAge, setSelfAge] = useState("");
   const [spouseAge, setSpouseAge] = useState("");
   const [sonAge, setSonAge] = useState("");
   const [daughterAge, setDaughterAge] = useState("");
+  const [sonAge1, setSonAge1] = useState("");
+  const [daughterAge1, setDaughterAge1] = useState("");
   const [fatherAge, setFatherAge] = useState("");
   const [motherAge, setMotherAge] = useState("");
   const [fatherInLawAge, setFatherInLawAge] = useState("");
@@ -46,7 +47,7 @@ const LandingPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [premiumData, setPremiumData] = useState(null); // store API response
+  const [premiumData, setPremiumData] = useState(null);
   const [pincodeError, setPincodeError] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
@@ -54,27 +55,27 @@ const LandingPage = () => {
   const [spouseAgeError, setSpouseAgeError] = useState("");
 
   //api handler
-  const [loading, setLoading] = useState(false); // for loader
-  const [apiError, setApiError] = useState(""); // for API/server error
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
+  const [otp, setOtp] = useState("");
+  const [otpError, setOtpError] = useState("");
+  const [generatedOtp, setGeneratedOtp] = useState(null); // store system OTP
+  const [otpVerified, setOtpVerified] = useState(false);
 
-  const calculatePremium = async () => {
-    let valid = true;
-    // Example validate function
+  const handleCalculateClick = () => {
+        let valid = true;
+
     const validateFamilyMembers = (selectedMembers) => {
-      // selectedMembers = array of selected ages (filter out empty values)
       const chosen = selectedMembers.filter((m) => m !== "");
-
       if (chosen.length < 1) {
         toast.error("Please select at least 1 family member");
         return false;
       }
-
       if (chosen.length > 4) {
         toast.error("You can select up to 4 family members only");
         return false;
       }
-
-      return true; // ✅ validation passed
+      return true;
     };
 
     // Reset errors
@@ -83,43 +84,76 @@ const LandingPage = () => {
     setPincodeError("");
     setPhoneError("");
 
-    // Validate Pincode
     if (!/^\d{6}$/.test(pincode)) {
       setPincodeError("Please enter a valid 6-digit Pincode.");
       valid = false;
     }
 
-    // Validate Mobile Number
     if (!/^\d{10}$/.test(phoneNumber)) {
       setPhoneError("Please enter a valid 10-digit Mobile Number.");
       valid = false;
     }
-    // ✅ Check if none are selected
     // Count how many are selected
     const selectedCount = [
       selfAge,
       spouseAge,
       sonAge,
       daughterAge,
+      sonAge1,
+      daughterAge1,
       fatherAge,
       motherAge,
       fatherInLawAge,
       motherInLawAge,
     ].filter(Boolean).length;
 
-    // ✅ Minimum 1 required
     if (selectedCount < 1) {
       toast.error("Please select age for at least one person.");
       valid = false;
     }
-
-    // ✅ Maximum 4 allowed
     if (selectedCount > 4) {
       toast.error("You can select up to 4 members only.");
       valid = false;
     }
 
     if (!valid) return;
+    // Step 1: If no OTP is generated yet → generate one
+    if (!generatedOtp) {
+      // const newOtp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit
+      const newOtp = "123456";
+      setGeneratedOtp(newOtp);
+      // setOtpError("OTP has been generated. Please enter it to proceed.");
+      console.log("Generated OTP (for testing):", newOtp); // remove in production
+      return;
+    }
+
+    // Step 2: If OTP not entered → show error
+    if (!otp) {
+      setOtpError("Please enter the OTP.");
+      return;
+    }
+
+    // Step 3: Validate OTP format
+    if (!/^\d{6}$/.test(otp)) {
+      setOtpError("Please enter a valid 6-digit OTP.");
+      return;
+    }
+
+    // Step 4: Check OTP match
+    if (otp !== generatedOtp) {
+      setOtpError("Invalid OTP. Please try again.");
+      return;
+    }
+
+    // Step 5: Success → clear error and call API
+    setOtpError("");
+    setOtpVerified(true);
+
+
+    calculatePremium(); // your existing function
+  };
+
+  const calculatePremium = async () => {
 
     try {
       setLoading(true);
@@ -130,11 +164,12 @@ const LandingPage = () => {
         spouseAge: Number(spouseAge),
         sonAge: Number(sonAge),
         daughterAge: Number(daughterAge),
+        sonAge1: Number(sonAge1),
+        daughterAge1: Number(daughterAge1),
         motherAge: Number(motherAge),
         fatherAge: Number(fatherAge),
         motherInLawAge: Number(motherInLawAge),
         fatherInLawAge: Number(fatherInLawAge),
-
         pincode,
         phoneNumber,
         email,
@@ -144,13 +179,12 @@ const LandingPage = () => {
       console.log(requestBody);
 
       const response = await api.post(
-        "PremiumCalculator/getqoute", // 👈 only endpoint
+        "PremiumCalculator/getqoute",
         requestBody
       );
 
       console.log("API Response:", response.data);
-      setPremiumData(response.data); // save response to state
-      // Navigate to result page
+      setPremiumData(response.data);
       navigate("/premium-result", { state: { data: response.data } });
     } catch (error) {
       let message = "Something went wrong. Please try again.";
@@ -161,9 +195,9 @@ const LandingPage = () => {
       } else {
         message = error.message;
       }
-      setApiError(message); // show error
+      setApiError(message);
     } finally {
-      setLoading(false); // hide loader
+      setLoading(false);
     }
   };
 
@@ -192,7 +226,15 @@ const LandingPage = () => {
         <div className="flex flex-col md:flex-row min-h-[400px] mb-10 ml-10 mr-10">
           {/* First Div */}
           {/* First Div */}
-          <div className="flex-1   w-full items-center justify-center md:w-[600px] mr-10">
+          <div
+            className={`flex-1 w-full md:w-[600px] mr-10 transition-all duration-300 
+    ${
+      showMore
+        ? "flex-1 w-full md:w-[600px] mr-10 transition-all duration-300  md:mt-[200px]"
+        : ""
+    }`}
+          >
+            {" "}
             <div className="flex p-4 rounded-lg w-full ">
               {/* Image (hidden on mobile) */}
               <div className="hidden md:block flex-shrink-0">
@@ -222,7 +264,6 @@ const LandingPage = () => {
             <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 text-center md:text-left">
               Buy Health Insurance Plans Online
             </p>
-
             <p className="text-base sm:text-lg md:text-xl text-gray-600 text-center">
               Starting at Just ₹21/day*
             </p>
@@ -318,7 +359,7 @@ const LandingPage = () => {
                   options={ageOptions}
                   placeholder="Age"
                   className="w-full"
-                      showClear={!!selfAge}
+                  showClear={!!selfAge}
                 />
                 {selfAgeError && (
                   <span className="text-red-600 text-sm mt-1 block">
@@ -342,7 +383,7 @@ const LandingPage = () => {
                   options={ageOptions} // ✅ Same options
                   placeholder="Age"
                   className="w-full"
-                      showClear={!!spouseAge}
+                  showClear={!!spouseAge}
                 />
 
                 {spouseAgeError && (
@@ -369,7 +410,7 @@ const LandingPage = () => {
                   options={sondaughterAgeOptions}
                   placeholder="Age"
                   className="w-full"
-                      showClear={!!sonAge}
+                  showClear={!!sonAge}
                 />
               </div>
 
@@ -388,7 +429,7 @@ const LandingPage = () => {
                   options={sondaughterAgeOptions}
                   placeholder="Age"
                   className="w-full"
-                      showClear={!!daughterAge}
+                  showClear={!!daughterAge}
                 />
               </div>
             </div>
@@ -406,6 +447,45 @@ const LandingPage = () => {
             {/* Extra Dropdowns */}
             {showMore && (
               <div>
+                <div className="flex flex-col sm:flex-row sm:space-x-6 space-y-4 sm:space-y-0 mb-2">
+                  {/* Son Dropdown */}
+                  <div className="flex-1">
+                    <label
+                      htmlFor="sonAge"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Son
+                    </label>
+                    <Dropdown
+                      id="sonAge1"
+                      value={sonAge1}
+                      onChange={(e) => setSonAge1(e.value)}
+                      options={sondaughterAgeOptions}
+                      placeholder="Age"
+                      className="w-full"
+                      showClear={!!sonAge1}
+                    />
+                  </div>
+
+                  {/* Daughter Dropdown */}
+                  <div className="flex-1">
+                    <label
+                      htmlFor="daughterAge1"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Daugther
+                    </label>
+                    <Dropdown
+                      id="daughterAge1"
+                      value={daughterAge1}
+                      onChange={(e) => setDaughterAge1(e.value)}
+                      options={sondaughterAgeOptions}
+                      placeholder="Age"
+                      className="w-full"
+                      showClear={!!daughterAge1}
+                    />
+                  </div>
+                </div>
                 <div className="flex flex-col sm:flex-row sm:flex-wrap sm:space-x-6 space-y-4 sm:space-y-0">
                   {/* Father */}
                   <div className="flex-1 min-w-[150px]">
@@ -542,6 +622,30 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
+            {generatedOtp && (
+              <div className="w-full mt-4">
+                <label
+                  htmlFor="otp"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Enter OTP
+                </label>
+                <input
+                  type="text"
+                  id="otp"
+                  value={otp} 
+                  onChange={(e) => setOtp(e.target.value)}
+                  placeholder="Enter OTP"
+                  className="w-full p-2 border border-gray-300 rounded-lg shadow-sm
+        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+                {otpError && (
+                  <span className="text-red-600 text-sm mt-1 block">
+                    {otpError}
+                  </span>
+                )}
+              </div>
+            )}
 
             {/* Calculate Premium Button */}
 
@@ -553,7 +657,7 @@ const LandingPage = () => {
               )}
               <button
                 type="button"
-                onClick={calculatePremium}
+                onClick={handleCalculateClick}
                 disabled={loading}
                 className="w-full px-6 py-3 bg-gradient-to-r text-white from-red-600 to-black font-semibold rounded-lg shadow-md 
              hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition
@@ -675,11 +779,10 @@ const LandingPage = () => {
           <p className="mb-1">#India Insurance Summit &amp; Awards 2024.</p>
 
           <p className="mb-1">
-            InsureX Insurance Limited Registered Office: 5th Floor, 19
-            Chawla House, Nehru Place, New Delhi-110019. Correspondence Office:
-            Unit No. 604 - 607, 6th Floor, Tower C, Unitech Cyber Park,
-            Sector-39, Gurugram -122001 (Haryana). Website:
-            www.InsureX.com
+            InsureX Insurance Limited Registered Office: 5th Floor, 19 Chawla
+            House, Nehru Place, New Delhi-110019. Correspondence Office: Unit
+            No. 604 - 607, 6th Floor, Tower C, Unitech Cyber Park, Sector-39,
+            Gurugram -122001 (Haryana). Website: www.InsureX.com
           </p>
 
           <p>

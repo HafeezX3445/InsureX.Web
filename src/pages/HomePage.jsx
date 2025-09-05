@@ -9,12 +9,12 @@ const HomePage = () => {
     <>
       <Optionsbar />
       <div className="home-container">
-        <h1 className="home-title">Welcome to InsureX</h1>
-        <p className="home-subtitle">Your trusted insurance partner.</p>
-
-        <button className="home-button" onClick={() => navigate("/landing")}>
-          Explore more !!
-        </button>
+      <button
+        onClick={() => navigate("/landing")}
+        className="px-6 py-3 bg-gradient-to-r from-red-600 to-black text-white font-semibold rounded-lg shadow-md hover:opacity-90 transition"
+      >
+        Go to Landing Page
+      </button>
       </div>
     </>
   );
