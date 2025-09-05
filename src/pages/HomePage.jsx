@@ -7,7 +7,6 @@ const HomePage = () => {
 
   return (
     <>
-      
       <Optionsbar />
       <div className="home-container">
         <h1 className="home-title">Welcome to InsureX</h1>
