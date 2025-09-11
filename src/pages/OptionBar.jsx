@@ -35,8 +35,8 @@ export default function NavbarBlue() {
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-6 ml-auto font-medium">
           <li className="group relative cursor-pointer px-3 py-2 rounded-lg hover:bg-[#1A5CC0]/10 transition duration-300">
-            <span>Health Plans</span>
-            <div className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-[#F0F7FF] shadow-xl rounded-xl p-6 w-[500px] animate-fadeIn z-50">
+            <span className="text-gray-700">Health Plans</span>
+            <div className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-[#FFFFFF] shadow-xl rounded-xl p-6 w-[500px] animate-fadeIn z-50">
               <div className="grid grid-cols-2 gap-3 text-[#2C7BE5]">
                 {[
                   "Individual Health Plan",
@@ -65,24 +65,98 @@ export default function NavbarBlue() {
           {["Renew Policy", "Contact Us"].map((item) => (
             <li
               key={item}
-              className="cursor-pointer px-3 py-2 rounded-lg hover:bg-[#1A5CC0]/10 transition duration-300"
+              className=" text-gray-700 cursor-pointer px-3 py-2 rounded-lg hover:bg-[#1A5CC0]/10 transition duration-300"
             >
               {item}
             </li>
           ))}
-
           <li className="group relative cursor-pointer px-3 py-2 rounded-lg hover:bg-[#1A5CC0]/10 transition duration-300">
-            <span>Support</span>
-            <div className="absolute right-0 mt-2 hidden group-hover:flex flex-col bg-[#F0F7FF] shadow-xl rounded-xl p-4 w-48 animate-fadeIn z-50">
-              {["Help Center", "FAQs"].map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="block px-3 py-2 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
-                >
-                  {link}
-                </a>
-              ))}
+            <span className="text-gray-700">Support</span>
+
+            {/* Dropdown */}
+            <div className="absolute right-0 mt-2 hidden group-hover:grid grid-cols-3 gap-6 bg-[#FFFFFF] shadow-xl rounded-xl p-6 w-[600px] animate-fadeIn z-50">
+              {/* My Account */}
+              <div>
+                <h4 className="font-semibold text-gray-700 border-b pb-2 mb-2">
+                  My Account
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
+                    >
+                      Agent Login
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
+                    >
+                      Customer Login
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
+                    >
+                      Admin Login
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Partner with Insurex */}
+              <div>
+                <h4 className="font-semibold text-gray-700 border-b pb-2 mb-2">
+                  Partner with Insurex
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
+                    >
+                      Become Agent
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
+                    >
+                      Corporate Consultant
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Get in Touch */}
+              <div>
+                <h4 className="font-semibold text-gray-700 border-b pb-2 mb-2">
+                  Get in Touch
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
+                    >
+                      Help Center
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
+                    >
+                      FAQs
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </li>
         </ul>
