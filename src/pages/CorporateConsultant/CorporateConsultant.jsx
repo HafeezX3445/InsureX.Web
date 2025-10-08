@@ -193,4 +193,4 @@ const CorporateConsultant = () => {
   );
 };
 
-export default CorporateConsultant;
+export default CorporateConsultant

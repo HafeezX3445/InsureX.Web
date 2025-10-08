@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 export default function NavbarBlue() {
   return (
@@ -115,20 +116,20 @@ export default function NavbarBlue() {
                 </h4>
                 <ul className="space-y-2">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/agent"
                       className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
                     >
                       Become Agent
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                     <Link
+                      to="/consultant"
                       className="block px-2 py-1 rounded-md hover:text-[#1A5CC0] transition-all duration-300"
                     >
                       Corporate Consultant
-                    </a>
+                   </Link>
                   </li>
                 </ul>
               </div>

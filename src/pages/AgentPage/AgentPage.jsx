@@ -186,6 +186,26 @@ const AgentPage = () => {
                 <p className="text-red-500 text-sm mt-1">{errors.gstin}</p>
               )}
             </div>
+                        {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Pincode
+              </label>
+              <input
+                name="pincode"
+                value={formData.pincode}
+                onChange={handleChange}
+                type="text"
+                placeholder="Enter your Pincode"
+                className={`w-full border ${
+                  errors.pincode ? "border-red-500" : "border-gray-300"
+                } rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-400 outline-none`}
+              />
+              {errors.pincode && (
+                <p className="text-red-500 text-sm mt-1">{errors.pincode}</p>
+              )}
+            </div>
+
 
             {/* Referer Checkbox */}
             <div className="flex items-center space-x-2 col-span-1 md:col-span-2">
