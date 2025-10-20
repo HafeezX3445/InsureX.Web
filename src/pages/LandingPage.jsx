@@ -216,7 +216,7 @@ const LandingPage = () => {
           className="
             text-2xl sm:text-3xl md:text-4xl 
             font-bold mb-6 
-            bg-gradient-to-r from-red-600 to-black bg-clip-text text-transparent 
+            bg-gradient-to-r from-blue-600 to-indigo-800 bg-clip-text text-transparent 
             p-3 leading-snug 
             text-center
           "
@@ -438,7 +438,7 @@ const LandingPage = () => {
             <div className="flex justify-center">
               <button
                 onClick={() => setShowMore(!showMore)}
-                className="px-4 py-2 bg-gradient-to-r text-white from-red-600 to-black rounded-lg shadow hover:bg-blue-700 transition"
+className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-800 text-white rounded-lg shadow hover:from-blue-700 hover:to-indigo-900 transition"
               >
                 {showMore ? "Hide More Relations" : "Add More Relations"}
               </button>
@@ -659,9 +659,9 @@ const LandingPage = () => {
                 type="button"
                 onClick={handleCalculateClick}
                 disabled={loading}
-                className="w-full px-6 py-3 bg-gradient-to-r text-white from-red-600 to-black font-semibold rounded-lg shadow-md 
-             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition
-             disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 bg-gradient-to-r text-white from-blue-600 to-indigo-800 font-semibold rounded-lg shadow-md 
+             hover:from-blue-700 hover:to-indigo-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition
+             disabled:opacity-50 disabled:cursor-not-allowed rounded-lg shadow transition"
               >
                 {loading ? "Calculating..." : "Calculate Premium"}
               </button>
