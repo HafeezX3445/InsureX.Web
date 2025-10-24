@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Optionsbar from "../OptionBar";
 import { useNavigate } from "react-router-dom";
 import LandingPage from "../LandingPage";
+import api from "../../config/axios"; 
+import { toast } from "react-toastify";
+
 
 const AgentPage = () => {
   const navigate = useNavigate(); 
@@ -52,16 +55,64 @@ const AgentPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      setShowModal(true);
-      // Auto navigate after 2 seconds
-      setTimeout(() => {
-        navigate("/landing");
-      }, 3000);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!validate()) return;
+
+  try {
+    // 🧩 Correct field mapping for your backend model
+    const requestBody = {
+      AgentName: formData.name,
+      AgentLastName: formData.surname,
+      Mobile: formData.mobile,
+      Email: formData.email,
+      GstIn: formData.gstin,
+      Pincode: formData.pincode,
+      IsReferred: formData.referer,
+      ReferredBy: formData.referer ? formData.agentCode : null,
+    };
+
+    console.log("Submitting data:", requestBody);
+
+    // 🚀 API call
+    const response = await api.post("/agents", requestBody);
+
+    console.log("✅ API Response:", response.data);
+
+    // 🎉 Success toast
+    toast.success("Your details have been submitted successfully! 🎉");
+
+    // Show modal if applicable
+    setShowModal(true);
+
+    // Auto-navigate after 2 seconds
+    setTimeout(() => {
+      navigate("/landing");
+    }, 2000);
+
+  } catch (error) {
+    console.error("❌ API Error:", error);
+
+    // 🧠 Smart error handling
+    if (error.response) {
+      console.error("Response Data:", error.response.data);
+      console.error("Status:", error.response.status);
+
+      toast.error(
+        error.response.data?.message ||
+        `Server error (${error.response.status}). Please try again.`
+      );
+    } else if (error.request) {
+      console.error("Request Error:", error.request);
+      toast.error("No response from server. Please check your connection.");
+    } else {
+      console.error("General Error:", error.message);
+      toast.error("Something went wrong. Please try again later.");
     }
-  };
+  }
+};
+
 
   return (
     <>
